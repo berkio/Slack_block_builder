@@ -36,7 +36,43 @@ while True:
                 # Добавляем кнопки, если это новое сообщение
                 if message_ts > oldest_timestamp:
                     # Создаем блок с кнопками
-                    blocks = None
+                    blocks = [
+		{
+			"type": "divider"
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "1",
+						"emoji": True
+					},
+					"value": "click_me_123"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "2",
+						"emoji": True
+					},
+					"value": "click_me_123"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "тест",
+						"emoji": True
+					},
+					"value": "click_me_123"
+				}
+			]
+		}
+	]
 
 
                     

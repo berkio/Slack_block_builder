@@ -5,6 +5,43 @@ import fdb
 import time
 import datetime
 
+def block_function(origin_text):
+
+    return [
+            {
+            	"type": "section",
+            	"text": {
+            		"type": "mrkdwn",
+            		"text": f"{origin_text}"
+            	}
+            },
+            {
+                "type": "actions",
+                "elements": [
+                    {
+                        "type": "button",
+                        "text": {
+                            "type": "plain_text",
+                            "emoji": True,
+                            "text": "Approve"
+                        },
+                        "style": "primary",
+                        "value": "click_me_123"
+                    },
+                    {
+                        "type": "button",
+                        "text": {
+                            "type": "plain_text",
+                            "emoji": True,
+                            "text": "Deny"
+                        },
+                        "style": "danger",
+                        "value": "click_me_123"
+                    }
+                ]
+            }
+        ]
+
 def timestamp_to_datetime(timestamp):
     timestamp = float(timestamp)
     dt = datetime.datetime.fromtimestamp(timestamp)
@@ -44,25 +81,24 @@ while True:
                 i += 1
                 print(i)
                 message_ts = message["ts"]
-                texts = message["text"]
+                text = message["text"]
 
-                print(f'text: {texts}')
+                print(f'text: {text}')
                 print(f'message_ts: {message_ts}')
                 print(f'date time: {timestamp_to_datetime(float(message_ts))}')
                 # Добавляем кнопки, если это новое сообщение
                 if float(message_ts) > float(oldest_timestamp):
                     # Создаем блок с кнопками
-                    blocks = None
-
-
+                    blocks = block_function(text)
+ 
                     
                     # Обновляем сообщение, добавляя блок с кнопками
                     try:
                         response = client.chat_update(
                             channel=channel_id,
                             ts=message_ts,
-                            blocks=blocks,
-                            text = texts + ' ОБНОВИЛ'
+                            blocks=blocks#,
+                            # text = texts + ' ОБНОВИЛ'
                         )
                         print("Сообщение успешно обновлено!")
                         oldest_timestamp = message_ts

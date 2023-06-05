@@ -34,59 +34,20 @@ while True:
                 print(f'text: {texts}')
                 
                 # Добавляем кнопки, если это новое сообщение
-                if message_ts > oldest_timestamp:
-                    # Создаем блок с кнопками
-                    blocks = [
-		{
-			"type": "divider"
-		},
-		{
-			"type": "actions",
-			"elements": [
-				{
-					"type": "button",
-					"text": {
-						"type": "plain_text",
-						"text": "1",
-						"emoji": True
-					},
-					"value": "click_me_123"
-				},
-				{
-					"type": "button",
-					"text": {
-						"type": "plain_text",
-						"text": "2",
-						"emoji": True
-					},
-					"value": "click_me_123"
-				},
-				{
-					"type": "button",
-					"text": {
-						"type": "plain_text",
-						"text": "тест",
-						"emoji": True
-					},
-					"value": "click_me_123"
-				}
-			]
-		}
-	]
-
-
-                    
-                    # Обновляем сообщение, добавляя блок с кнопками
-                    try:
-                        response = client.chat_update(
-                            channel=channel_id,
-                            ts=message_ts,
-                            blocks=blocks,
-                            text = texts + ' ОБНОВИЛ'
-                        )
-                        print("Сообщение успешно обновлено!")
-                    except SlackApiError as e:
-                        print("Ошибка обновления сообщения: {}".format(e))
+                # if message_ts > oldest_timestamp:
+                #     # Создаем блок с кнопками
+                #     blocks =None
+                #     # Обновляем сообщение, добавляя блок с кнопками
+                #     try:
+                #         response = client.chat_update(
+                #             channel=channel_id,
+                #             ts=message_ts,
+                #             blocks=blocks,
+                #             text = texts + ' ОБНОВИЛ'
+                #         )
+                #         print("Сообщение успешно обновлено!")
+                #     except SlackApiError as e:
+                #         print("Ошибка обновления сообщения: {}".format(e))
                 
                 # Обновляем timestamp последнего сообщения
                 if message_ts > oldest_timestamp:
